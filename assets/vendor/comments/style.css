@@ -1,0 +1,133 @@
+div.main_page {
+  width:500px;
+  margin-top: 80px;
+  margin-bottom: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 0px 0px 0px;
+
+  border-color: #212738;
+  border-style: solid;
+  background-color: #FFFFFF;
+
+}
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  margin-top: 10px;
+  overflow-wrap: break-word;
+}
+textarea{
+  width: calc(100% - 2px);
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+input.btn{
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  width: 80px;
+  height: 30px;
+  background-color:#0085A1;
+  color:#ffffff;
+  box-sizing: border-box;
+  border: none;
+  position: relative;
+  left:calc(100% - 80px);
+}
+.button-wrapper{
+  position: relative;
+}
+
+div.comment{
+  min-width:500px;
+  min-height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding: 0px 0px 0px 0px;
+  overflow-wrap: break-word;
+}
+div.comment-form{
+  /* word-wrap: break-word; */
+  /* overflow-wrap:break-word; */
+  /* width: 300px; */
+  word-break: break-all;
+}
+div.button-group{
+  margin-top:10px;
+}
+a:link{
+  color: black;
+}
+a:hover{
+  color: white;
+}
+a:active{
+  color: black;
+}
+a.editbtn{
+
+  float:left;
+  text-decoration:none;
+
+}
+button.delbtn{
+  background-color:white;
+  padding-left: 4px;
+  padding-right: 4px;
+  float:right;
+  text-decoration : none;
+  border :0;
+  outline :0;
+}
+button.editbtn{
+  background-color:white;
+  padding-left: 40px;
+  border :0;
+  outline :0;
+  float:left;
+
+}
+button.cancelbtn{
+  background-color:white;
+  padding-left: 4px;
+  padding-right: 4px;
+  border :0;
+  outline :0;
+  float:right;
+}
+
+button.editbtn_submit{
+  background-color:white;
+  border :0;
+  outline :0;
+  padding-left: 40px;
+  float:left;
+
+}
+
+nav {
+  background-color : #9c89b8;
+  height:50px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  border-bottom:solid;
+  z-index: 1;
+}
+nav ul{
+  position:relative;
+  margin:0px;
+  padding:0px;
+}
+ul li{
+  float:right;
+  text-decoration: none;
+  line-height: 50px;
+  vertical-align:middle;
+  text-align: right;
+  display: inline;
+  color:black;
+  padding-right:30px;
+}
