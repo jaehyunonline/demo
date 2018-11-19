@@ -117,7 +117,7 @@
       <input class='btn' type='submit' value='작성' onclick="return AddComment();"></input>
       <div class="comment" id="commentForm">
           <div id="Progress_Loading">
-            <img src="Progress_Loading.gif"/>
+            <img src="/demo/assets/vendor/comments/Progress_Loading.gif"/>
           </div>
           <div class='show'>
 
@@ -126,7 +126,8 @@
   </div>
 
 <script type="myTemplate" id="listTemplate">
-   }}
+
+  
     <div class="clearfix">
       <div class="wrapper">
         <div style="text-align:center"> <img src="/demo/assets/vendor/comments/userimage.png" height="48" width="48"> </div>
@@ -143,7 +144,7 @@
           <label style="float:right;">{{cmt_date}}</label>
           <label style="float:right;">{{cmt_time}}</label> </div>
           <div style="text-align:center">{{cmt_name}}</div>
-          <div> <input name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW"></input>
+          <div> <input name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW" type="password"></input>
             <input name="Userpw{{cmt_id}}" id="Userpw{{cmt_id}}" type="hidden" value="{{user_pw}}"></input></div>
           <div class="button-group">
 
@@ -241,15 +242,7 @@ async function AddComment(){
 
   var commentData = {comment_text: _comment, user_id:userName, user_pw :userPw , post_id:post_id}
   console.log(commentData)
-  $(document).ready(function(){
-   $('#Progress_Loading').hide(); //첫 시작시 로딩바를 숨겨준다.
-  })
-  .ajaxStart(function(){
-  	$('#Progress_Loading').show(); //ajax실행시 로딩바를 보여준다.
-  })
-  .ajaxStop(function(){
-  	$('#Progress_Loading').hide(); //ajax종료시 로딩바를 숨겨준다.
-  });
+
   $(document).ready(function() {
       $.ajax({
           type:"GET",
@@ -382,16 +375,25 @@ function getPostId(){
   var data=[];
   console.log(getPostId())
   function showComment(){
+    // Handlebars.registerHelper('ifCond',function(flag){
+    //   if(flag==1) return options.fn(this);
+    //   else return options.inverse(this);
+    // });
     var template = document.querySelector("#listTemplate").innerText;
     var bindTemplate = Handlebars.compile(template);
     console.log('loading comments...')
+
     $(document).ready(function() {
       $.ajax({
         type:"GET",
         url: "https://externship.livere.com/comment/get",
         data: {post_id:getPostId()},
         dataType:"JSON",
+        beforeSend:function(){
+          $('#Progress_Loading').show(); //ajax실행시 로딩바를 보여준다.
+        },
         success:function(result){
+          $('#Progress_Loading').hide(); //ajax종료시 로딩바를 숨겨준다.
           data =result['results'];
           console.log(data);
           var resultHTML = data.reduce(function(prev,next) {
