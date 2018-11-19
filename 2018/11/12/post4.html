@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="/demo/assets/vendor/font-awesome/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/demo/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/demo/2018/11/12/post4.html">
+  <link rel="canonical" href="http://jaehyunonline.github.io/demo/2018/11/12/post4.html">
   <link rel="alternate" type="application/rss+xml" title="시불막창" href="/demo/feed.xml">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
@@ -108,10 +108,17 @@
 </script>
 
   <div>
-      <input type="hidden" id="UserID" name="UserID" />
+      <!-- <input type="hidden" id="UserID" name="UserID" /> -->
       <textarea rows="5" id="_text" name="_text"></textarea>
+  </div>
+  <div>
+      <input name="UserName" id="UserName" placeholder="Name" ></input>
+      <input type="password" name="pw" id="pw" placeholder="PW"></input>
       <input class='btn' type='submit' value='작성' onclick="return AddComment();"></input>
       <div class="comment" id="commentForm">
+          <div id="Progress_Loading">
+            <img src="Progress_Loading.gif"/>
+          </div>
           <div class='show'>
 
           </div>
@@ -119,45 +126,92 @@
   </div>
 
 <script type="myTemplate" id="listTemplate">
-<div class="clearfix">
-  <div class="wrapper">
-    <div style="text-align:center"> <img src="/demo/assets/vendor/comments/userimage.png" height="48" width="48"> </div>
-    
-      <div>
-        <div id="commentform{{cmt_id}}" name="commentform{{cmt_id}}">
-        <div class="comment-form" id="comment_text" name="comment_text"> {{cmt_content}} </div>
-      </div>
-      <div style="display:none;" id="editform{{cmt_id}}" name="editform{{cmt_id}}">
-        <textarea id="edit_text{{cmt_id}}" name="edit_text{{cmt_id}}" rows="5">{{cmt_content}}</textarea>
-      </div>
-    </div>
-    <div>
-      <label style="float:right;">{{cmt_date}}</label>
-      <label style="float:right;">{{cmt_time}}</label> </div>
-      <div style="text-align:center">{{cmt_name}}</div>
-      <div> </div>
-      <div class="button-group">
-
+   }}
+    <div class="clearfix">
+      <div class="wrapper">
+        <div style="text-align:center"> <img src="/demo/assets/vendor/comments/userimage.png" height="48" width="48"> </div>
         
-        <button  class="editbtn" type="button" id="editbtn{{cmt_id}}" name="editbtn{{cmt_id}}" onclick="ShowEditForm({{cmt_id}});">
-         <img src="/demo/assets/vendor/comments/edit.png" height="20" width="20">
-        </button>
-        <button  class="delbtn" type="button" id="delbtn{{cmt_id}}" name="delbtn{{cmt_id}}" onclick="CheckDelete({{cmt_id}});" >
-          <img src="/demo/assets/vendor/comments/del.png" height="20" width="20" />
-        </button>
+          <div>
+            <div id="commentform{{cmt_id}}" name="commentform{{cmt_id}}">
+            <div class="comment-form" id="comment_text" name="comment_text"> {{cmt_content}} </div>
+          </div>
+          <div style="display:none;" id="editform{{cmt_id}}" name="editform{{cmt_id}}">
+            <textarea id="edit_text{{cmt_id}}" name="edit_text{{cmt_id}}" rows="5">{{cmt_content}}</textarea>
+          </div>
+        </div>
+        <div>
+          <label style="float:right;">{{cmt_date}}</label>
+          <label style="float:right;">{{cmt_time}}</label> </div>
+          <div style="text-align:center">{{cmt_name}}</div>
+          <div> <input name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW"></input>
+            <input name="Userpw{{cmt_id}}" id="Userpw{{cmt_id}}" type="hidden" value="{{user_pw}}"></input></div>
+          <div class="button-group">
 
-        <button  class="editbtn_submit" type="button" id="edit_postbtn{{cmt_id}}" name="edit_postbtn{{cmt_id}}" style="display:none;" onclick="EditSubmit({{cmt_id}})" >
-         <img src="/demo/assets/vendor/comments/check-mark.png" height="20" width="20">
-        </button>
+            
+            <button  class="editbtn" type="button" id="editbtn{{cmt_id}}" name="editbtn{{cmt_id}}" onclick="ShowEditForm({{cmt_id}});">
+             <img src="/demo/assets/vendor/comments/edit.png" height="20" width="20">
+            </button>
+            <button  class="delbtn" type="button" id="delbtn{{cmt_id}}" name="delbtn{{cmt_id}}" onclick="CheckDelete({{cmt_id}});" >
+              <img src="/demo/assets/vendor/comments/del.png" height="20" width="20" />
+            </button>
 
-        <button class="cancelbtn" type="button" id="cancelbtn{{cmt_id}}" name="cancelbtn{{cmt_id}}" onclick="EditCancelForm({{cmt_id}});" style="display:none;" >
-        <img src="/demo/assets/vendor/comments/cancel.png" height="20" width="20">
-        </button>
+            <button  class="editbtn_submit" type="button" id="edit_postbtn{{cmt_id}}" name="edit_postbtn{{cmt_id}}" style="display:none;" onclick="EditSubmit({{cmt_id}})" >
+             <img src="/demo/assets/vendor/comments/check-mark.png" height="20" width="20">
+            </button>
 
+            <button class="cancelbtn" type="button" id="cancelbtn{{cmt_id}}" name="cancelbtn{{cmt_id}}" onclick="EditCancelForm({{cmt_id}});" style="display:none;" >
+            <img src="/demo/assets/vendor/comments/cancel.png" height="20" width="20">
+            </button>
+
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<hr>
+    <hr>
+    
+    <details>
+      <summary>정치 혐오 댓글이 감지되었습니다.</summary>
+      <div class="clearfix">
+        <div class="wrapper">
+          <div style="text-align:center"> <img src="/demo/assets/vendor/comments/userimage.png" height="48" width="48"> </div>
+          
+            <div>
+              <div id="commentform{{cmt_id}}" name="commentform{{cmt_id}}">
+              <div class="comment-form" id="comment_text" name="comment_text"> {{cmt_content}} </div>
+            </div>
+            <div style="display:none;" id="editform{{cmt_id}}" name="editform{{cmt_id}}">
+              <textarea id="edit_text{{cmt_id}}" name="edit_text{{cmt_id}}" rows="5">{{cmt_content}}</textarea>
+            </div>
+          </div>
+          <div>
+            <label style="float:right;">{{cmt_date}}</label>
+            <label style="float:right;">{{cmt_time}}</label> </div>
+            <div style="text-align:center">{{cmt_name}}</div>
+            <div> <input name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW"></input>
+              <input name="Userpw{{cmt_id}}" id="Userpw{{cmt_id}}" type="hidden" value="{{Userpw}}"></input></div>
+            <div class="button-group">
+
+              
+              <button  class="editbtn" type="button" id="editbtn{{cmt_id}}" name="editbtn{{cmt_id}}" onclick="ShowEditForm({{cmt_id}});">
+               <img src="/demo/assets/vendor/comments/edit.png" height="20" width="20">
+              </button>
+              <button  class="delbtn" type="button" id="delbtn{{cmt_id}}" name="delbtn{{cmt_id}}" onclick="CheckDelete({{cmt_id}});" >
+                <img src="/demo/assets/vendor/comments/del.png" height="20" width="20" />
+              </button>
+
+              <button  class="editbtn_submit" type="button" id="edit_postbtn{{cmt_id}}" name="edit_postbtn{{cmt_id}}" style="display:none;" onclick="EditSubmit({{cmt_id}})" >
+               <img src="/demo/assets/vendor/comments/check-mark.png" height="20" width="20">
+              </button>
+
+              <button class="cancelbtn" type="button" id="cancelbtn{{cmt_id}}" name="cancelbtn{{cmt_id}}" onclick="EditCancelForm({{cmt_id}});" style="display:none;" >
+              <img src="/demo/assets/vendor/comments/cancel.png" height="20" width="20">
+              </button>
+
+          </div>
+        </div>
+      </div>
+    </details>
+    <hr>
+    
 </script>
 
 <script type="text/javascript">
@@ -166,22 +220,36 @@
 async function AddComment(){
 
   var _comment = document.getElementById("_text").value;
-  var userID =  document.getElementById("UserID").value;
+  var userName =  document.getElementById("UserName").value.trim();
+  var userPw =  document.getElementById("pw").value.trim();
 
   // 네아로 추가시 아래 활성화
   // if(!name || userID===""){
   //     alert("로그인 필수");
   //     return false;
   // }
-
+  if(!userName || !userPw){
+    alert("이름 & 비밀번호 입력 필수 !!");
+    return false;
+  }
   if(_comment ==""){
-      alert("내용입력 필수");
+    alert("내용입력 필수 !!");
+    return false;
   }
 
   var _postId = await getPostId();
-  var commentData = {comment_text: _comment,user_id:'John',post_id:post_id}
-  console.log(commentData)
 
+  var commentData = {comment_text: _comment, user_id:userName, user_pw :userPw , post_id:post_id}
+  console.log(commentData)
+  $(document).ready(function(){
+   $('#Progress_Loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+  })
+  .ajaxStart(function(){
+  	$('#Progress_Loading').show(); //ajax실행시 로딩바를 보여준다.
+  })
+  .ajaxStop(function(){
+  	$('#Progress_Loading').hide(); //ajax종료시 로딩바를 숨겨준다.
+  });
   $(document).ready(function() {
       $.ajax({
           type:"GET",
@@ -204,43 +272,51 @@ async function AddComment(){
 }
 
 function CheckDelete(cmt_id){
-  var check ="삭제하시겠습니까?";
-  console.log(check)
-  // 본인 댓글인지 확인 절차 필요
-  if(confirm(check)===true){
-      $.ajax({
-        type:"GET",
-        url:"https://externship.livere.com/comment/del",
-        data:{comment_id:cmt_id},
-        dataType: "JSON",
-        succes:function(result){
-          console.log("삭제 처리 완료-"+result)
-          alert('댓글을 삭제하였습니다.')
-        },
-        error:function(xhr,status,error){
-          console.log("삭제 처리 실패-"+error)
-        }
-      });
-      window.location.reload(true);
+  var _Inputpw =  document.getElementById("Inputpw"+cmt_id).value;
+  var _Userpw =  document.getElementById("Userpw"+cmt_id).value;
+  if(_Userpw != _Inputpw){
+    alert("비밀번호가 틀렸습니다.");
+    return;
+  }else{
+    var check ="삭제하시겠습니까?";
+    console.log(check)
+    // 본인 댓글인지 확인 절차 필요
+    if(confirm(check)===true){
+        $.ajax({
+          type:"GET",
+          url:"https://externship.livere.com/comment/del",
+          data:{comment_id:cmt_id},
+          dataType: "JSON",
+          succes:function(result){
+            console.log("삭제 처리 완료-"+result)
+            alert('댓글을 삭제하였습니다.')
+          },
+          error:function(xhr,status,error){
+            console.log("삭제 처리 실패-"+error)
+          }
+        });
+        window.location.reload(true);
+    }
   }
-// }else{
-//     alert("본인 댓글만 삭제 가능");
-//     return false;
-// }
-
 }
 
 function ShowEditForm(ID) {
+  var _Inputpw =  document.getElementById("Inputpw"+ID).value;
+  var _Userpw =  document.getElementById("Userpw"+ID).value;
+  if(_Userpw != _Inputpw){
+    alert("비밀번호가 틀렸습니다.");
+    return;
+  }else{
+    document.getElementById("commentform"+ID).style.display = "none";
+    document.getElementById("editform"+ID).style.display = "";
 
-  document.getElementById("commentform"+ID).style.display = "none";
-  document.getElementById("editform"+ID).style.display = "";
-
-  document.getElementById("editbtn"+ID).style.display = "none";
-  document.getElementById("delbtn"+ID).style.display = "none";
-  document.getElementById("edit_postbtn"+ID).style.display = "";
-  document.getElementById("cancelbtn"+ID).style.display = "";
-  getPostId();
-return;
+    document.getElementById("editbtn"+ID).style.display = "none";
+    document.getElementById("delbtn"+ID).style.display = "none";
+    document.getElementById("edit_postbtn"+ID).style.display = "";
+    document.getElementById("cancelbtn"+ID).style.display = "";
+    getPostId();
+    return;
+  }
 }
 
 function EditComment(ID) {
