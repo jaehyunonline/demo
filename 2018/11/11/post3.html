@@ -112,12 +112,16 @@
       <textarea rows="5" id="_text" name="_text"></textarea>
   </div>
   <div>
-      <input name="UserName" id="UserName" placeholder="Name" ></input>
-      <input type="password" name="pw" id="pw" placeholder="PW"></input>
-      <input class='btn' type='submit' value='작성' onclick="return AddComment();"></input>
+    <div class="wrapper2">
+      <!-- <div> </div> -->
+      <div> <input class="IDPW" name="UserName" id="UserName" placeholder="Name" ></input> </div>
+      <div> <input class="IDPW" type="password" name="pw" id="pw" placeholder="PW"></input> </div>
+      <div> </div>
+      <div> <input class='btn' type='submit' value='작성' onclick="return AddComment();"></input></div>
+    </div>
       <div class="comment" id="commentForm">
           <div id="Progress_Loading">
-            <img src="/demo/assets/vendor/comments/progress_loading.gif"/>
+            <img style="position:absolute; left:50%;" src="/demo/assets/vendor/comments/progress_loading.gif"/>
           </div>
           <div class='show'>
 
@@ -126,8 +130,11 @@
   </div>
 
 <script type="myTemplate" id="listTemplate">
-
   
+  {{#if push_flag}}
+  
+  <details>
+    <summary>정치 혐오 댓글이 감지되었습니다.</summary>
     <div class="clearfix">
       <div class="wrapper">
         <div style="text-align:center"> <img src="/demo/assets/vendor/comments/userimage.png" height="48" width="48"> </div>
@@ -144,7 +151,7 @@
           <label style="float:right;">{{cmt_date}}</label>
           <label style="float:right;">{{cmt_time}}</label> </div>
           <div style="text-align:center">{{cmt_name}}</div>
-          <div> <input name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW" type="password"></input>
+          <div> <input class="IDPW" style="float:right;" type="password" name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW" type="password"></input>
             <input name="Userpw{{cmt_id}}" id="Userpw{{cmt_id}}" type="hidden" value="{{user_pw}}"></input></div>
           <div class="button-group">
 
@@ -167,10 +174,13 @@
         </div>
       </div>
     </div>
+
+  </details>
     <hr>
     
-    <details>
-      <summary>정치 혐오 댓글이 감지되었습니다.</summary>
+      {{else}}
+    
+
       <div class="clearfix">
         <div class="wrapper">
           <div style="text-align:center"> <img src="/demo/assets/vendor/comments/userimage.png" height="48" width="48"> </div>
@@ -187,8 +197,8 @@
             <label style="float:right;">{{cmt_date}}</label>
             <label style="float:right;">{{cmt_time}}</label> </div>
             <div style="text-align:center">{{cmt_name}}</div>
-            <div> <input name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW"></input>
-              <input name="Userpw{{cmt_id}}" id="Userpw{{cmt_id}}" type="hidden" value="{{Userpw}}"></input></div>
+            <div> <input class="IDPW" style="float:right;" type="password" name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW"></input>
+              <input name="Userpw{{cmt_id}}" id="Userpw{{cmt_id}}" type="hidden" value="{{user_pw}}"></input></div>
             <div class="button-group">
 
               
@@ -210,20 +220,17 @@
           </div>
         </div>
       </div>
-    </details>
     <hr>
+    
+    {{/if}}
     
 </script>
 
 <script type="text/javascript">
-
-
 async function AddComment(){
-
   var _comment = document.getElementById("_text").value;
   var userName =  document.getElementById("UserName").value.trim();
   var userPw =  document.getElementById("pw").value.trim();
-
   // 네아로 추가시 아래 활성화
   // if(!name || userID===""){
   //     alert("로그인 필수");
@@ -237,12 +244,9 @@ async function AddComment(){
     alert("내용입력 필수 !!");
     return false;
   }
-
   var _postId = await getPostId();
-
   var commentData = {comment_text: _comment, user_id:userName, user_pw :userPw , post_id:post_id}
   console.log(commentData)
-
   $(document).ready(function() {
       $.ajax({
           type:"GET",
@@ -252,7 +256,6 @@ async function AddComment(){
           success:function(result){
             console.log('Add Comment success..'+result);
             alert('댓글을 등록하였습니다.')
-
             showComment();
           },
           error: function(xhr,status,error){
@@ -263,7 +266,6 @@ async function AddComment(){
       window.location.reload(true);
     });
 }
-
 function CheckDelete(cmt_id){
   var _Inputpw =  document.getElementById("Inputpw"+cmt_id).value;
   var _Userpw =  document.getElementById("Userpw"+cmt_id).value;
@@ -292,63 +294,58 @@ function CheckDelete(cmt_id){
     }
   }
 }
-
 function ShowEditForm(ID) {
   var _Inputpw =  document.getElementById("Inputpw"+ID).value;
   var _Userpw =  document.getElementById("Userpw"+ID).value;
+
   if(_Userpw != _Inputpw){
     alert("비밀번호가 틀렸습니다.");
+    document.getElementById("Inputpw"+ID).value="";
     return;
   }else{
     document.getElementById("commentform"+ID).style.display = "none";
     document.getElementById("editform"+ID).style.display = "";
-
     document.getElementById("editbtn"+ID).style.display = "none";
     document.getElementById("delbtn"+ID).style.display = "none";
     document.getElementById("edit_postbtn"+ID).style.display = "";
     document.getElementById("cancelbtn"+ID).style.display = "";
+    document.getElementById("Inputpw"+ID).style.display="none";
+    document.getElementById("Inputpw"+ID).value="";
     getPostId();
     return;
   }
 }
-
 function EditComment(ID) {
   var check="수정 ?";
   var edittext =document.getElementById("edit_text"+ID).value;
-
   if (confirm(check)) {
       document.getElementById("edit_content").value = edittext;
       edit_content=edittext;
-
       return true;
   }else{
       return false;
   }
-
 }
-
 function EditCancelForm(ID) {
   var check="수정 취소 ?";
   if(confirm(check)){
       // window.location.reload(true);
       document.getElementById("commentform"+ID).style.display = "";
       document.getElementById("editform"+ID).style.display = "none";
-
       document.getElementById("editbtn"+ID).style.display = "";
       document.getElementById("delbtn"+ID).style.display = "";
       document.getElementById("edit_postbtn"+ID).style.display = "none";
       document.getElementById("cancelbtn"+ID).style.display = "none";
+      document.getElementById("Inputpw"+ID).style.display="";
       return;
   }else{
       return ;
   }
 }
-
 function EditSubmit(ID){
   if(confirm("수정하시겠습니까?")){
     var new_comment=document.getElementById("edit_text"+ID).value;
     console.log(new_comment);
-
     $.ajax({
       type:"GET",
       url:"https://externship.livere.com/comment/edit",
@@ -364,11 +361,9 @@ function EditSubmit(ID){
     window.location.reload(true);
   }
 }
-
 function getPostId(){
   return post_id;
 }
-
 </script>
 
 <script>
@@ -382,7 +377,6 @@ function getPostId(){
     var template = document.querySelector("#listTemplate").innerText;
     var bindTemplate = Handlebars.compile(template);
     console.log('loading comments...')
-
     $(document).ready(function() {
       $.ajax({
         type:"GET",
@@ -408,9 +402,7 @@ function getPostId(){
       })
     });
   }
-
 showComment();
-
 </script>
 </body>
 
