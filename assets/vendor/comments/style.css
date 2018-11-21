@@ -48,6 +48,9 @@ textarea{
   margin: 0px 0px 0px 0px;
 }
 input.IDPW{
+  font-family: Arial;
+  font-size: 15px;
+  padding: 0px 0px 0px 10px;
   border-radius: 15px 50px;
   max-width: 150px;
   margin-right: 10px;

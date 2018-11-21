@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="/demo/assets/vendor/font-awesome/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/demo/assets/main.css">
-  <link rel="canonical" href="http://jaehyunonline.github.io/demo/2018/11/12/post4.html">
+  <link rel="canonical" href="http://localhost:4000/demo/2018/11/12/post4.html">
   <link rel="alternate" type="application/rss+xml" title="시불막창" href="/demo/feed.xml">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
@@ -114,8 +114,8 @@
   <div>
     <div class="wrapper2">
       <!-- <div> </div> -->
-      <div> <input class="IDPW" name="UserName" id="UserName" placeholder="Name" ></input> </div>
-      <div> <input class="IDPW" type="password" name="pw" id="pw" placeholder="PW"></input> </div>
+      <div> <input class="IDPW" name="UserName" id="UserName" placeholder="이름" ></input> </div>
+      <div> <input class="IDPW" type="password" name="pw" id="pw" placeholder="비밀번호"></input> </div>
       <div> </div>
       <div> <input class='btn' type='submit' value='작성' onclick="return AddComment();"></input></div>
     </div>
@@ -158,7 +158,7 @@
           </table>
         </div>
           <div style="text-align:center">{{cmt_name}}</div>
-          <div> <input class="IDPW" style="float:right;" type="password" name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW" type="password"></input>
+          <div> <input class="IDPW" style="float:right;" type="password" name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="비밀번호" type="password"></input>
             <input name="Userpw{{cmt_id}}" id="Userpw{{cmt_id}}" type="hidden" value="{{user_pw}}"></input></div>
           <div class="button-group">
 
@@ -211,7 +211,7 @@
             </table>
             </div>
           <div style="text-align:center">{{cmt_name}}</div>
-          <div> <input class="IDPW" style="float:right;" type="password" name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="PW"></input>
+          <div> <input class="IDPW" style="float:right;" type="password" name="Inputpw{{cmt_id}}" id="Inputpw{{cmt_id}}" placeholder="비밀번호"></input>
               <input name="Userpw{{cmt_id}}" id="Userpw{{cmt_id}}" type="hidden" value="{{user_pw}}"></input></div>
 
             <div class="button-group">
