@@ -12,6 +12,10 @@ div.main_page {
 
 }
 .wrapper{
+  padding: 10px 10px 10px 10px;
+  background-color: white;
+  font-family: Arial;
+  font-size: 15px;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   margin-top: 10px;
@@ -24,16 +28,32 @@ div.main_page {
   margin-bottom: 50px;
   overflow-wrap: break-word;
 }
+label.DATETIME{
+  font-size: 15px;
+  text-align: right;
+  float: right;
+
+}
+div.DATETIME{
+  display: block;
+}
+details{
+  font-family: Arial;
+  font-size: 15px;
+}
 textarea{
+  border-radius: 5px 50px;
   width: calc(100% - 2px);
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
 }
 input.IDPW{
+  border-radius: 15px 50px;
   max-width: 150px;
   margin-right: 10px;
 }
 input.btn{
+  border-radius: 5px 50px;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 80px;
@@ -49,7 +69,9 @@ input.btn{
 .button-wrapper{
   position: relative;
 }
-
+div.IMG{
+    background-color: white;
+}
 div.comment{
   min-width:500px;
   min-height: 50px;
@@ -84,6 +106,7 @@ a.editbtn{
 
 }
 button.delbtn{
+
   background-color:white;
   padding-left: 4px;
   padding-right: 4px;
@@ -93,6 +116,7 @@ button.delbtn{
   outline :0;
 }
 button.editbtn{
+
   background-color:white;
   padding-left: 40px;
   border :0;
