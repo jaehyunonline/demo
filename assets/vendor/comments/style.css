@@ -42,9 +42,11 @@ details{
   font-size: 15px;
 }
 textarea{
+  font-family: Arial;
+  font-size: 15px;
   border-radius: 5px 50px;
   width: calc(100% - 2px);
-  padding: 0px 0px 0px 0px;
+  padding: 5px 5px 5px 5px;
   margin: 0px 0px 0px 0px;
 }
 input.IDPW{
@@ -169,4 +171,14 @@ ul li{
   display: inline;
   color:black;
   padding-right:30px;
+}
+summary::-webkit-details-marker {
+
+    /* color: white; */
+    font-size: 0px;
+    /* margin-right: 2px; */
+
+}
+summary::-webkit-details-marker:hover {
+    color: red;
 }
