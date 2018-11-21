@@ -136,10 +136,10 @@
   <details>
     <summary><img src="/demo/img/alert.png" height="24px" width="24px" />   <u>혐오 표현이 포함된 댓글입니다. </u></summary>
     <div class="clearfix">
-      <div class="wrapper">
-        <div class="IMG" style="text-align:center"> <img src="/demo/assets/vendor/comments/userimage.png" height="48" width="48"> </div>
+      <div class="wrapper" style="background:#FFF6F6">
+        <div class="IMG" style="text-align:center;background:#FFF6F6"> <img src="/demo/assets/vendor/comments/warning.png" height="48" width="48"> </div>
         
-          <div>
+          <div style="background:#FFF6F6">
             <div id="commentform{{cmt_id}}" name="commentform{{cmt_id}}">
             <div class="comment-form" id="comment_text" name="comment_text"> {{cmt_content}} </div>
           </div>
@@ -163,18 +163,18 @@
           <div class="button-group">
 
             
-            <button  class="editbtn" type="button" id="editbtn{{cmt_id}}" name="editbtn{{cmt_id}}" onclick="ShowEditForm({{cmt_id}});">
+            <button  class="editbtn" type="button" style="background:#FFF6F6" id="editbtn{{cmt_id}}" name="editbtn{{cmt_id}}" onclick="ShowEditForm({{cmt_id}});">
              <img src="/demo/assets/vendor/comments/edit.png" height="20" width="20">
             </button>
-            <button  class="delbtn" type="button" id="delbtn{{cmt_id}}" name="delbtn{{cmt_id}}" onclick="CheckDelete({{cmt_id}});" >
+            <button  class="delbtn" type="button" style="background:#FFF6F6" id="delbtn{{cmt_id}}" name="delbtn{{cmt_id}}" onclick="CheckDelete({{cmt_id}});" >
               <img src="/demo/assets/vendor/comments/del.png" height="20" width="20" />
             </button>
 
-            <button  class="editbtn_submit" type="button" id="edit_postbtn{{cmt_id}}" name="edit_postbtn{{cmt_id}}" style="display:none;" onclick="EditSubmit({{cmt_id}})" >
+            <button  class="editbtn_submit" type="button" id="edit_postbtn{{cmt_id}}" name="edit_postbtn{{cmt_id}}" style="display:none;background:#FFF6F6" onclick="EditSubmit({{cmt_id}})" >
              <img src="/demo/assets/vendor/comments/check-mark.png" height="20" width="20">
             </button>
 
-            <button class="cancelbtn" type="button" id="cancelbtn{{cmt_id}}" name="cancelbtn{{cmt_id}}" onclick="EditCancelForm({{cmt_id}});" style="display:none;" >
+            <button class="cancelbtn" type="button" id="cancelbtn{{cmt_id}}" name="cancelbtn{{cmt_id}}" onclick="EditCancelForm({{cmt_id}});" style="display:none;background:#FFF6F6" >
             <img src="/demo/assets/vendor/comments/cancel.png" height="20" width="20">
             </button>
 
