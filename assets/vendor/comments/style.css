@@ -173,11 +173,7 @@ ul li{
   padding-right:30px;
 }
 summary::-webkit-details-marker {
-
-    /* color: white; */
-    font-size: 0px;
-    /* margin-right: 2px; */
-
+  display:none;
 }
 summary::-webkit-details-marker:hover {
     color: red;
